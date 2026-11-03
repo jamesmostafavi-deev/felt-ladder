@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Felt Ladder</title>
+<meta name="description" content="A poker training program: from recreational to amateur to pro.">
+<meta name="theme-color" content="#1E5A43">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Felt Ladder">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a href="#home" class="brand"><span class="spade" aria-hidden="true">♠</span> Felt Ladder</a>
+    <a href="#settings" class="gear" aria-label="Settings">Settings</a>
+  </div>
+</header>
+<main id="view" tabindex="-1"></main>
+<nav class="tabs" aria-label="Main">
+  <a href="#home" data-tab="home"><span class="ti">◆</span>Home</a>
+  <a href="#learn" data-tab="learn"><span class="ti">▤</span>Learn</a>
+  <a href="#drills" data-tab="drills"><span class="ti">◎</span>Drills</a>
+  <a href="#sessions" data-tab="sessions"><span class="ti">$</span>Sessions</a>
+  <a href="#players" data-tab="players"><span class="ti">☺</span>Players</a>
+</nav>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
