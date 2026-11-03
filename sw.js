@@ -1,7 +1,7 @@
 // Offline cache for the app shell. Bump VERSION when files change.
-var VERSION = "felt-ladder-v1";
+var VERSION = "felt-ladder-v2";
 var FILES = [
-  "./", "index.html", "styles.css", "data.js", "app.js", "manifest.webmanifest",
+  "./", "index.html", "styles.css", "data.js", "app.js", "table.js", "manifest.webmanifest",
   "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "icons/apple-touch-icon.png"
 ];
 self.addEventListener("install", function (e) {

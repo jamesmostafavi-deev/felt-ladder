@@ -30,5 +30,6 @@ Progress, sessions and player notes stay on the device you use. To move them to 
 
 - `data.js`: lessons, quizzes, ranges and sources. Edit this to change content.
 - `app.js`: the app logic.
+- `table.js`: the practice table (dealing, betting, bots, hand evaluation, coach).
 - `styles.css`: the look.
 - `sw.js`: offline support. If you edit files, change `VERSION` in this file so installed copies update.

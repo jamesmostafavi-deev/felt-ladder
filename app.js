@@ -7,7 +7,7 @@
   // ---------- state ----------
   function blank() {
     return { v: 1, lessons: {}, pre: [], preTotal: { n: 0, ok: 0 }, odds: [], oddsTotal: { n: 0, ok: 0 },
-      quiz: {}, sessions: [], players: [], days: [], unlockAll: false, celebrated: {}, created: today() };
+      quiz: {}, table: { hands: 0, net: 0, vpip: 0, pfr: 0, won: 0, seats: null, button: 0, coach: true, types: true, auto: false }, sessions: [], players: [], days: [], unlockAll: false, celebrated: {}, created: today() };
   }
   var S;
   try { S = Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) { S = blank(); }
@@ -83,7 +83,7 @@
     var fn = routes[name] || routes.home;
     view.innerHTML = "";
     fn(arg);
-    var tab = { home: "home", learn: "learn", lesson: "learn", playbook: "learn", sources: "learn", drills: "drills", chart: "drills", drill: "drills", quiz: "drills", sessions: "sessions", players: "players" }[name] || "";
+    var tab = { home: "home", learn: "learn", lesson: "learn", playbook: "learn", sources: "learn", drills: "drills", chart: "drills", drill: "drills", quiz: "drills", table: "table", sessions: "sessions", players: "players" }[name] || "";
     document.querySelectorAll(".tabs a").forEach(function (a) { if (a.dataset.tab === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
     window.scrollTo(0, 0);
   }
@@ -112,7 +112,7 @@
       '<div class="stat"><span class="v">' + (preN ? Math.round(sum(S.pre.slice(-50)) / preN * 100) + "%" : "–") + '</span><span class="k">Starting hands, last ' + (preN || 50) + "</span></div>" +
       '<div class="stat"><span class="v">' + (oddsN ? Math.round(sum(S.odds.slice(-20)) / oddsN * 100) + "%" : "–") + '</span><span class="k">Pot odds, last ' + (oddsN || 20) + "</span></div>" +
       '<div class="stat"><span class="v ' + (net > 0 ? "pos" : net < 0 ? "neg" : "") + '">' + (S.sessions.length ? money(net) : "–") + '</span><span class="k">Net from ' + S.sessions.length + " sessions</span></div></div>");
-    html('<div class="row"><a class="btn primary big" href="#drill-preflop">Quick drill: hands</a><a class="btn big" href="#drill-odds">Quick drill: odds</a></div>');
+    html('<a class="btn primary big" href="#table">Play hands at the practice table</a><div class="row"><a class="btn big" href="#drill-preflop">Drill: hands</a><a class="btn big" href="#drill-odds">Drill: odds</a></div>');
     var ib = document.getElementById("install");
     if (ib) ib.onclick = function () { deferredInstall.prompt(); deferredInstall.userChoice.finally(function () { deferredInstall = null; render(); }); };
   };
@@ -436,5 +436,6 @@
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferredInstall = e; if ((location.hash || "#home") === "#home") render(); });
   window.addEventListener("hashchange", render);
   if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js").catch(function () {});
-  render();
+  window.FLX = { get S() { return S; }, save: save, studied: studied, toast: toast, esc: esc, SETS: SETS, routes: routes, view: view, render: render, money: money };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render); else setTimeout(render);
 })();
